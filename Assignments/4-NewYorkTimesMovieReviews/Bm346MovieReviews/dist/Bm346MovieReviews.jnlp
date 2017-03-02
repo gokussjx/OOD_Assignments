@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="Bm346MovieReviews.jnlp">
+  <information>
+    <title>Bm346MovieReviews</title>
+    <vendor>bidyut</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="Bm346MovieReviews.jar" size="8711" download="eager" />
+    <jar href="lib/commons-lang3-3.5.jar" size="479881" download="eager" />
+    <jar href="lib/gson-2.6.2.jar" size="229650" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Bm346MovieReviews" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="bm346moviereviews.Bm346MovieReviews"  name="Bm346MovieReviews" />
+  <update check="always"/>
+</jnlp>
