@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Bm346MovieReviews.jar" size="8711" download="eager" />
+    <jar href="Bm346MovieReviews.jar" size="12155" download="eager" />
     <jar href="lib/commons-lang3-3.5.jar" size="479881" download="eager" />
     <jar href="lib/gson-2.6.2.jar" size="229650" download="eager" />
   </resources>

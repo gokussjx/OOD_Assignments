@@ -7,32 +7,26 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox fx:id="vBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bm346moviereviews.UserInterfaceController">
    <children>
       <MenuBar fx:id="menuBar">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Clear" />
-                  <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" onAction="#handleAbout" text="About" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
-      <HBox prefHeight="60.0" prefWidth="800.0">
+      <HBox prefHeight="49.0" prefWidth="800.0">
          <children>
             <Label fx:id="movieLabel" prefHeight="17.0" prefWidth="42.0" text="Movie:">
                <HBox.margin>
@@ -51,53 +45,128 @@
             </Button>
          </children>
       </HBox>
-      <SplitPane dividerPositions="0.8" orientation="VERTICAL" prefHeight="457.0" prefWidth="800.0" VBox.vgrow="ALWAYS">
-        <items>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+      <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+         <children>
+            <ListView fx:id="movieResults" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="798.0" VBox.vgrow="ALWAYS">
+         <children>
+            <FlowPane fx:id="flowPane" alignment="CENTER_LEFT" columnHalignment="CENTER" hgap="4.0" prefHeight="200.0" prefWidth="200.0" vgap="4.0" HBox.hgrow="ALWAYS">
                <children>
-                  <ListView fx:id="movieResults" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-               </children>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <FlowPane fx:id="flowPane" alignment="CENTER_LEFT" columnHalignment="CENTER" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                  <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <FlowPane.margin>
+                        <Insets bottom="10.0" left="15.0" right="-5.0" top="10.0" />
+                     </FlowPane.margin>
+                  </ImageView>
+                  <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="550.0" spacing="5.0">
+                     <FlowPane.margin>
+                        <Insets left="20.0" right="10.0" />
+                     </FlowPane.margin>
                      <children>
-                        <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                           <FlowPane.margin>
-                              <Insets bottom="10.0" left="15.0" right="-5.0" top="10.0" />
-                           </FlowPane.margin>
-                        </ImageView>
-                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="455.0" spacing="5.0">
-                           <FlowPane.margin>
-                              <Insets left="20.0" right="10.0" />
-                           </FlowPane.margin>
-                           <padding>
-                              <Insets left="10.0" right="10.0" />
-                           </padding>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label fx:id="titleLabel" text="Title:" />
-                              <Label fx:id="mpaaLabel" text="MPAA Rating:" />
-                              <Label fx:id="bylineLabel" text="Byline:" />
-                              <Label fx:id="headlineLabel" text="Headline Review:" />
-                              <Label fx:id="openingDateLabel" text="Opening Date:" />
-                              <Label fx:id="publicationDateLabel" text="Publication Date:" />
-                              <Label fx:id="dateUpdatedLabel" text="Date Updated:" />
-                              <Button fx:id="fullReviewButton" mnemonicParsing="false" onAction="#launchBrowser" text="Read Full Review">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin></Button>
+                              <Label fx:id="titleLabel" text="Title:">
+                                 <font>
+                                    <Font name="Helvetica Bold" size="13.0" />
+                                 </font></Label>
+                              <Label fx:id="titleLabelContent" text="-">
+                                 <HBox.margin>
+                                    <Insets left="2.0" />
+                                 </HBox.margin>
+                              </Label>
                            </children>
-                        </VBox>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label fx:id="mpaaLabel" text="MPAA Rating:">
+                                 <font>
+                                    <Font name="Helvetica Bold" size="13.0" />
+                                 </font></Label>
+                              <Label fx:id="mpaaLabelContent" text="-">
+                                 <HBox.margin>
+                                    <Insets left="2.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label fx:id="bylineLabel" text="Byline:">
+                                 <font>
+                                    <Font name="Helvetica Bold" size="13.0" />
+                                 </font></Label>
+                              <Label fx:id="bylineLabelContent" text="-">
+                                 <HBox.margin>
+                                    <Insets left="2.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label fx:id="headlineLabel" text="Headline:">
+                                 <font>
+                                    <Font name="Helvetica Bold" size="13.0" />
+                                 </font></Label>
+                              <Label fx:id="headlineLabelContent" text="-">
+                                 <HBox.margin>
+                                    <Insets left="2.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label fx:id="openingDateLabel" text="Opening Date:">
+                                 <font>
+                                    <Font name="Helvetica Bold" size="13.0" />
+                                 </font></Label>
+                              <Label fx:id="openingDateLabelContent" text="-">
+                                 <HBox.margin>
+                                    <Insets left="2.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label fx:id="publicationDateLabel" text="Publication Date:">
+                                 <font>
+                                    <Font name="Helvetica Bold" size="13.0" />
+                                 </font></Label>
+                              <Label fx:id="pubDateLabelContent" text="-">
+                                 <HBox.margin>
+                                    <Insets left="2.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label fx:id="dateUpdatedLabel" text="Date Updated:">
+                                 <font>
+                                    <Font name="Helvetica Bold" size="13.0" />
+                                 </font></Label>
+                              <Label fx:id="dateUpdatedLabelContent" text="-">
+                                 <HBox.margin>
+                                    <Insets left="2.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <Button fx:id="fullReviewButton" mnemonicParsing="false" onAction="#launchBrowser" text="Read Full Review">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Button>
                      </children>
-                  </FlowPane>
+                  </VBox>
                </children>
-            </HBox>
-        </items>
-         <VBox.margin>
-            <Insets top="10.0" />
-         </VBox.margin>
-      </SplitPane>
-      <TextArea fx:id="summaryText" editable="false" prefHeight="200.0" prefWidth="200.0">
+            </FlowPane>
+         </children>
+      </HBox>
+      <TextArea fx:id="summaryText" editable="false" prefHeight="70.0" prefWidth="200.0" text="[Review]" VBox.vgrow="SOMETIMES">
          <VBox.margin>
             <Insets bottom="10.0" top="10.0" />
          </VBox.margin>

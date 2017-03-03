@@ -28,7 +28,7 @@ public class Bm346MovieReviews extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();                               // Scene -> Stage -> root vc (eg VBox)
 
-        controller.ready(primaryStage, getHostServices());
+        controller.ready(getHostServices());
     }
 
     /**
