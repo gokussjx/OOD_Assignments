@@ -96,4 +96,25 @@ public class UserInterfaceController implements Initializable {
         alert.showAndWait();
     }
 
+    @FXML
+    public void handleAbout() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("About");
+        alert.setHeaderText("NYT Movie Reviews");
+        alert.setContentText("This application was developed by Bidyut Mukherjee (bm346) for CS7330 at the University of Missouri, under the guidance of Dr. Dale Musser.");
+
+        TextArea textArea = new TextArea("This assignment parses any input XML file to DOM format, using SAX event-driven parsing.");
+        textArea.setEditable(false);
+        textArea.setWrapText(true);
+        textArea.setMaxWidth(Double.MAX_VALUE);
+        textArea.setMaxHeight(Double.MAX_VALUE);
+
+        GridPane expContent = new GridPane();
+        expContent.setMaxWidth(Double.MAX_VALUE);
+        expContent.add(textArea, 0, 0);
+        alert.getDialogPane().setExpandableContent(expContent);
+
+        alert.showAndWait();
+    }
+
 }

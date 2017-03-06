@@ -22,9 +22,6 @@ public class BmSAXParser {
     private static Deque<BmXMLNode> stack = new ArrayDeque<>();
     private static BmXMLNode currentNode;
 
-//    static String currentElementName;
-//    static String currentElementData = "";
-
     public static BmXMLNode parse(File xmlFile) throws Exception {
         try {
             SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -42,8 +39,10 @@ public class BmSAXParser {
 
                 @Override
                 public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+
                     BmXMLNode node = new BmXMLNode();
                     node.name = qName;
+
                     if (attributes.getLength() > 0) {
                         for (int i = 0; i < attributes.getLength(); i++) {
                             node.attributes.put(attributes.getQName(i), attributes.getValue(i));
@@ -90,19 +89,10 @@ public class BmSAXParser {
                         currentNode.content += string;
                     }
                 }
-
-                @Override
-                public void startCDATA() throws SAXException {
-                    cdataContent = true;
-                }
-
-                @Override
-                public void endCDATA() throws SAXException {
-                    cdataContent = false;
-                }
             };
 
             saxParser.parse(xmlFile.getAbsoluteFile(), handler);
+
         } catch (SAXException e) {
             throw e;
         }
