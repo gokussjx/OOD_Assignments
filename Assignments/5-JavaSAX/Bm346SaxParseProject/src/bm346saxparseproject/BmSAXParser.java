@@ -7,7 +7,6 @@ import org.xml.sax.ext.DefaultHandler2;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.File;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
@@ -28,8 +27,6 @@ public class BmSAXParser {
             SAXParser saxParser = factory.newSAXParser();
 
             DefaultHandler2 handler = new DefaultHandler2() {
-
-                boolean cdataContent = false;
 
                 @Override
                 public void startDocument() throws SAXException {
@@ -82,10 +79,6 @@ public class BmSAXParser {
                 public void characters(char[] ch, int start, int length) throws SAXException {
                     if (currentNode != null) {
                         String string = new String(ch, start, length);
-                        if (cdataContent) {
-                            byte[] buffer = StandardCharsets.UTF_8.encode(string).array();
-                            string = new String(buffer);
-                        }
                         currentNode.content += string;
                     }
                 }
